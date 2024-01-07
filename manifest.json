@@ -1,0 +1,17 @@
+{
+    "name": "BetterMyStudies",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "host_permissions": ["https://www.lehrbetrieb.ethz.ch/myStudies/studLeistungsueberblick.view?*"],
+    "description": "Allows students to directly calculate their GPA and download online lectures",
+    "action": {
+        "default_icon": "icon.png",
+        "default_popup": "index.html"
+    },
+
+    "content_scripts": [{
+        "js": ["scripts/calculate.js"],
+        "matches": ["https://www.lehrbetrieb.ethz.ch/myStudies/studLeistungsueberblick.view?*"],
+        "run_at": "document_end"
+    }]
+}
