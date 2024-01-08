@@ -4,6 +4,17 @@ function roundToDecimalPlaces(number, decimalPlaces) {
 }
 
 function calculate() {
+
+    const lang = document.getElementsByTagName("meta");
+    let en = false;
+    for (const m of lang) {
+        if (m.httpEquiv && m.httpEquiv === "language") {
+            if (m.content === "en") {
+                en = true;
+            }
+        }
+    }
+
     const rows = document.getElementsByTagName("tr");
     let grades = [];
     let credits = [];
@@ -26,7 +37,13 @@ function calculate() {
             }
             continue;
         }
-        const grade = parseFloat(cells[3].textContent);
+
+        let grade = 0.0;
+        if (cells[3].textContent.includes("Best") || cells[3].textContent.includes("pass")) {
+            grade = 6.0;
+        } else {
+            grade = parseFloat(cells[3].textContent);
+        }
         const creadits = parseFloat(cells[5].textContent);
         if (!isNaN(grade) && !isNaN(creadits)) {
             grades.push(grade);
@@ -43,7 +60,7 @@ function calculate() {
 
     weightedMean = roundToDecimalPlaces(weightedMean, 2);
 
-    if (window.location.href.includes("lang=en")) {
+    if (en) {
         alert("Mean: " + mean + "\nWeighted Mean: " + weightedMean);
     } else {
         alert("Durchschnitt: " + mean + "\nGewichteter Durchschnitt: " + weightedMean);
@@ -56,7 +73,16 @@ const init = function () {
     const ul = navebar.getElementsByTagName("ul")[0];
     const element = document.createElement('li');
     const link = document.createElement('a');
-    if (window.location.href.includes("lang=en")) {
+    const lang = document.getElementsByTagName("meta");
+    let en = false;
+    for (const m of lang) {
+        if (m.httpEquiv && m.httpEquiv === "language") {
+            if (m.content === "en") {
+                en = true;
+            }
+        }
+    }
+    if (en) {
         link.textContent = "Average";
     } else {
         link.textContent = "Durchschnitt";
