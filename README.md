@@ -4,7 +4,7 @@
 This extension allows you to average your transcript directly in MyStudies and download lectures from the ETH video portal.
 
 ## Usage
-1) Download zip [here](https://github.com/avezzu/eth-extensions/archive/refs/tags/2.0.1v.zip) and unzip
+1) Download zip [here](https://github.com/zzuro/eth-extensions/releases/tag/2.0.1v) and unzip
 2) Open extension menu in your browser
 3) Enable Developer mode
 4) press Load unzipped files
